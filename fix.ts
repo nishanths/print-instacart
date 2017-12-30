@@ -186,14 +186,14 @@ function formatDate(date: Date) {
   return days[day] + ", " + d + " " + months[m] + " " + y;
 }
 
-function addDetails(): boolean {
+function addDetails(now: Date): boolean {
   let elem = doc().querySelector(".order-summary-header-text");
   if (!elem) {
     return false;
   }
 
   let loc = window.location.href;
-  let d = formatDate(new Date());
+  let d = formatDate(now);
 
   let storeLink = doc().createElement("div");
   storeLink.textContent = loc;
@@ -211,6 +211,10 @@ function addDetails(): boolean {
   return true;
 }
 
+function setTitle(now: Date) {
+  doc().title = "instacart_order_" + now.getTime();
+}
+
 function main() {
   hideElement(".ic-nav-new", "#header") || console.log("failed to find main header");
   hideElement(".order-status-header")   || console.log("failed to find order status header");
@@ -223,7 +227,9 @@ function main() {
   // TODO: fix @import sheets also? (but, for now, Instacart doesn't have anything meaningful there)  
   // See https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet#Notes
 
-  addDetails() || console.log("failed to add details");
+  let now = new Date();
+  addDetails(now) || console.log("failed to add details");
+  setTitle(now); // better filename when saving to PDF.
 }
 
 main();
