@@ -100,6 +100,8 @@ function makeFrameStyleElement(sheet: CSSStyleSheet): Promise<void> {
 }
 
 // Fixes the stylesheets of <style> elements in the supplied list.
+// Calls cb with the sheet after it has been fixed.
+// TODO: the cb params is hacky.
 function fixStyleElements(list: StyleSheetList, cb?: (sheet: CSSStyleSheet) => void) {
   for (let i = 0; i < list.length; i++) {
     let sheet = list.item(i) as CSSStyleSheet;
