@@ -192,7 +192,7 @@ function addDetails(now: Date): boolean {
     return false;
   }
 
-  let loc = window.location.href;
+  let loc = doc().location.href;
   let d = formatDate(now);
 
   let storeLink = doc().createElement("div");
@@ -211,8 +211,16 @@ function addDetails(now: Date): boolean {
   return true;
 }
 
+function orderID(): string {
+  let idx = doc().location.pathname.lastIndexOf("/");
+  if (idx == -1) {
+    return "";
+  }
+  return doc().location.pathname.substring(idx+1);
+}
+
 function setTitle(now: Date) {
-  doc().title = "instacart_order_" + now.getTime();
+  doc().title = "instacart_order_" + orderID() + "_" + now.getTime();
 }
 
 function main() {
@@ -224,6 +232,7 @@ function main() {
 
   fixStyleElements(doc().styleSheets);
   fixLinkElements(doc().styleSheets);
+
   // TODO: fix @import sheets also? (but, for now, Instacart doesn't have anything meaningful there)  
   // See https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet#Notes
 
