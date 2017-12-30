@@ -29,7 +29,14 @@ func (p *proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rsp, err := http.Get(r.FormValue("url"))
+	u := r.FormValue("url")
+	if u == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("usage: /ic-proxy?url=<url>\n"))
+		return
+	}
+
+	rsp, err := http.Get(u)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
