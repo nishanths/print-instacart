@@ -1,7 +1,7 @@
-// proxyURL returns the URL to use to fetch the resource at u, 
+// proxyURL returns the URL to use to fetch the resource at u,
 // in order to work around cross-origin restrictions.
-function proxyURL(u: string): string { 
-  return "https://x.concurrent.space/ic-proxy?url=" + encodeURIComponent(u); 
+function proxyURL(u: string): string {
+  return "https://x.concurrent.space/ic-proxy?url=" + encodeURIComponent(u);
 }
 
 function doc(): HTMLDocument { return window.top.document; }
@@ -101,7 +101,7 @@ function makeFrameStyleElement(sheet: CSSStyleSheet): Promise<void> {
 
 // Fixes the stylesheets of <style> elements in the supplied list.
 // Calls cb with the sheet after it has been fixed.
-// TODO: the cb params is hacky.
+// TODO: the cb param is hacky.
 function fixStyleElements(list: StyleSheetList, cb?: (sheet: CSSStyleSheet) => void) {
   for (let i = 0; i < list.length; i++) {
     let sheet = list.item(i) as CSSStyleSheet;
@@ -139,14 +139,10 @@ function fixMedia(m: string): string {
   return m.split(",")
     .map(s => s.trim())
     // keep "not print" and others; remove "print"
-    .filter(s => isPrint(s))
+    .filter(s => s.indexOf("print") == -1 || s.indexOf("not") != -1)
     .filter(s => !notAllRx_.test(s))
     .map(s => s.replace(screenRx_, "all"))
     .join(",");
-}
-
-function isPrint(s: string): boolean {
-  return s.indexOf("print") == -1 || s.indexOf("not") != -1;
 }
 
 // hideElement hides the first element matching the selector specified.
@@ -176,7 +172,7 @@ function formatDate(date: Date) {
 
   const months = [
     "Jan", "Feb", "Mar",
-    "Apr", "May", "Jun", 
+    "Apr", "May", "Jun",
     "Jul", "Aug", "Sep",
     "Oct", "Nov", "Dec"
   ];
@@ -235,7 +231,7 @@ function main() {
   fixStyleElements(doc().styleSheets);
   fixLinkElements(doc().styleSheets);
 
-  // TODO: fix @import sheets also? (but, for now, Instacart doesn't have anything meaningful there)  
+  // TODO: fix @import sheets also? (but, for now, Instacart doesn't have anything meaningful there)
   // See https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet#Notes
 
   let now = new Date();
