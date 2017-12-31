@@ -1,7 +1,7 @@
 // proxyURL returns the URL to use to fetch the resource at u,
 // in order to work around cross-origin restrictions.
 function proxyURL(u: string): string {
-  return "https://x.concurrent.space/ic-proxy?url=" + encodeURIComponent(u);
+  return "https://x.avalanche.space/ic-proxy?url=" + encodeURIComponent(u);
 }
 
 function doc(): HTMLDocument { return window.top.document; }
