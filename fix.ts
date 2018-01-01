@@ -48,7 +48,7 @@ function fixLinkElements(list: StyleSheetList) {
     rewriteLinkElements();
   }).catch(e => {
     console.log(e);
-  })
+  });
 }
 
 function rewriteLinkElements() {
@@ -131,8 +131,8 @@ function fixStyleSheet(sheet: CSSStyleSheet) {
   }
 }
 
-const screenRx_ = /(?:only\s+)?screen?/g;
-const notAllRx_ = /not\s+all/
+const screenRx_ = /(?:only\s+)?screen/g;
+const notAllRx_ = /not\s+all/;
 
 // fixMedia fixes up the supplied media condition.
 function fixMedia(m: string): string {
@@ -217,8 +217,8 @@ function orderID(): string {
   return doc().location.pathname.substring(idx+1);
 }
 
-function setTitle(now: Date) {
-  doc().title = "instacart_order_" + orderID() + "_" + now.getTime();
+function setTitle() {
+  doc().title = "instacart_order_" + orderID();
 }
 
 function main() {
@@ -237,7 +237,7 @@ function main() {
 
   let now = new Date();
   addDetails(now) || console.log("failed to add details");
-  setTitle(now); // better filename when saving to PDF.
+  setTitle(); // better filename when saving to PDF.
 }
 
 main();
