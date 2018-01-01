@@ -225,6 +225,7 @@ function main() {
   hideElement(".ic-nav-new", "#header") || console.log("failed to find main header");
   hideElement(".order-status-header")   || console.log("failed to find order status header");
   hideElement(".order-status-bulletin") || console.log("failed to find sidebar");
+  hideElement(".order-status-recommendations-wrapper");
   hideElement(".order-summary-header-actions");
   hideElement("#toast-container");
 
