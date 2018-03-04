@@ -228,6 +228,7 @@ function main() {
   hideElement(".order-status-recommendations-wrapper");
   hideElement(".order-summary-header-actions");
   hideElement("#toast-container");
+  hideElement("[class*='order-changes-education'");
 
   fixStyleElements(doc().styleSheets);
   fixLinkElements(doc().styleSheets);
