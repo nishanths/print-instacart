@@ -12,9 +12,11 @@ an eyesore.
 ## Usage
 
 1. Visit an orders page
+
 	```
   	https://www.instacart.com/store/orders/<id>
 	```
+
 2. Run the bookmarklet in the `fix.min.js` file.
 3. Save the page as a PDF from your browser's print dialog
 
